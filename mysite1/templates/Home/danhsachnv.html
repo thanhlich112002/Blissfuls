@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* Set font family and size for all elements */
+    * {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+    }
+
+    /* Set background color for the body */
+    body {
+        background-color: #f2f2f2;
+    }
+
+    /* Style the table */
+    table {
+        border-collapse: collapse;
+        margin: 20px auto;
+        background-color: #fff;
+    }
+
+    /* Style the table caption */
+    caption {
+        font-size: 24px;
+        font-weight: bold;
+        padding: 10px;
+        text-align: center;
+    }
+
+    /* Style table header cells */
+    th {
+        background-color: #ddd;
+        padding: 10px;
+        text-align: center;
+    }
+
+    /* Style table data cells */
+    td {
+        padding: 10px;
+        text-align: center;
+    }
+
+    /* Style links */
+    a {
+        color: #0099ff;
+        text-decoration: none;
+    }
+
+    /* Style link hover */
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<body>
+    <table border="1">
+        <caption>
+            Danh sách nhân viên Blissful
+        </caption>
+        <tr>
+            <th>STT</th>
+            <th>Fisrt_name</th>
+            <th>Last_name</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Date_of_birth</th>
+            <th>Chuc Vu</th>
+
+
+        </tr>
+        {% for nhanvien in dsnv %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ nhanvien.First_name }}</td>
+            <th>{{ nhanvien.Last_name}}</th>
+            <th>{{ nhanvien.Phone}}</th>
+            <th>{{nhanvien.Address}}</th>
+            <th>{{nhanvien.Date_of_birth}}</th>
+            <th>{{nhanvien.chuc_vu.Name}}</th>
+            {%if user.isAdmin == 1%}
+            <th><a href="{% url 'delete' nhanvien.id %}">Xoa</a></th>
+            <th><a href="{% url 'detailuser_id' nhanvien.id %}">Update</a></th>
+            {%endif%}
+        </tr>
+        {% endfor %}
+
+    </table>
+    {%if user.isAdmin == 1%}
+    <a href="{% url 'add_nv'%}">Thêm Nhân Viên</a>
+    {%endif%}
+</body>
+
+</html>

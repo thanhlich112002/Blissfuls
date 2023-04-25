@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/ThemNhanVien.css'%}">
+</head>
+
+<body>
+    <div class="container">
+        <form action="{% url 'themnhanvien' %}" method=post>
+            <table>
+                {% csrf_token %}
+                <caption>Nhập thông tin nhân viên</caption>
+                <tr>
+                    <td>
+                        <p>First name</p>
+                    </td>
+                    <td><input name="First name" class="right" type="text" placeholder="First name" required></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Last name</p>
+                    </td>
+                    <td><input name="Last name" class="right" type="text" placeholder="Last name" required></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Phone:</p>
+                    </td>
+                    <td><input name="Phone" class="right" type="text" placeholder="Phone" required></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Address</p>
+                    </td>
+                    <td><input name="Address" class="right" type="text" placeholder="Address" required></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Date of birth:</p>
+                    </td>
+                    <td><input name="date" class="right" type="date" required></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Chức vụ:</p>
+                    </td>
+                    <td>
+                        <select name="cars" id="cars">
+                            <option value="1">Quản lý</option>
+                            <option value="2">Nhân viên</option>
+                            <option value="3">Bảo vệ</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <div class="btn">
+                <button type="submit">Lưu thông tin</button>
+                <button type="reset">Hủy</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

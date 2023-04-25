@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLISSFUL</title>
+    <link rel="icon" href="{% static 'img/logo_blackwhite.png' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/fontawesome-free-6.2.1-web/css/all.css'%}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <a href="#"><img src="{% static 'img/logo.png' %}" alt=""></a>
+            </div>
+            <div class="list-item">
+                <div class="item">
+                    <a href="{% url 'body' %}" target="body">Trang chủ</a>
+                </div>
+                <div class="item">
+                    <a href="{% url 'load_DSNV' user.id %}" target="body">Danh sách nhân viên</a>
+                </div>
+                <div class="item">
+                    <a href="{% url 'detailuser' user.id %}" target="body">Cá nhân</a>
+                </div>
+                <form action="{% url 'dsnv_name' user.id %}" method="post" target="body">
+                    {% csrf_token %}
+                    <input name="modal-quatity" id="modal-quatity" type="text" class="search"
+                        placeholder="Tìm kiếm nhân viên">
+                </form>
+                </form>
+            </div>
+            <div class="login js-buy-ticket">
+                <a href="{%  url 'logout' %}">Đăng xuất</a>
+            </div>
+        </div>
+
+        <div class="frame-body">
+            <iframe src="{%  url 'body' %}" frameborder="0" name="body"></iframe>
+        </div>
+
+    </div>
+    <div class="modal js-modal">
+        <div class="modal-container js-modal-container">
+            <div class="modal-close js-modal-close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+
+            <header class="modal-header">
+                <img src="{% static 'img/logo.png'%}" alt="logo">
+                <p>Blissful xin chào!</p>
+            </header>
+
+            <div class="modal-body">
+                <input id="modal-quatity" type="text" class="modal-input" placeholder="Tài khoản">
+                <input id="modal-email" type="text" class="modal-input" placeholder="Mật khẩu">
+                <div class="modal-forget">
+                    <a href="">Quên mật khẩu?</a>
+                </div>
+                <button class="modal-pay-btn">
+                    Đăng nhập
+                    <i class="ti-check"></i>
+                </button>
+            </div>
+
+            <footer class="modal-footer">
+                Bạn chưa có tài khoản? <a href="">Đăng ký</a>
+            </footer>
+        </div>
+    </div>
+    <script>
+        const BuyBtns = document.querySelectorAll('.js-buy-ticket')
+        const modal = document.querySelector('.js-modal')
+        const modalClose = document.querySelector('.js-modal-close')
+        const modalContainer = document.querySelector('.js-modal-container')
+
+        function ShowBuyTicket() {
+            modal.classList.add('open')
+        }
+
+        function HideBuyTicket() {
+            modal.classList.remove('open')
+        }
+
+        for (const BuyBtn of BuyBtns) {
+            BuyBtn.addEventListener('click', ShowBuyTicket)
+        }
+
+        modalClose.addEventListener('click', HideBuyTicket)
+
+        modal.addEventListener('click', HideBuyTicket)
+
+        modalContainer.addEventListener('click', function (event) {
+            event.stopPropagation()
+        })
+
+        var header = document.getElementById('header');
+        var mobileMenu = document.getElementById('mobile-menu');
+        var headerHeight = header.clientHeight;
+
+        // open/close mobile menu
+        mobileMenu.onclick = function () {
+            var isClosed = header.clientHeight === headerHeight;
+            if (isClosed) {
+                header.style.height = 'auto';
+            } else {
+                header.style.height = null;
+            }
+        }
+
+        // auto close when menu selection
+        var menuItems = document.querySelectorAll('#nav li a[href*="#"]');
+
+        for (var i = 0; i < menuItems.length; i++) {
+            var menuItem = menuItems[i];
+
+            menuItem.onclick = function (event) {
+                var isParentMenu = this.nextElementSibling && this.nextElementSibling.classList.contains('subnav');
+                if (isParentMenu) {
+                    event.preventDefault();
+                } else {
+                    header.style.height = null;
+                }
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>

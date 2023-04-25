@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table border="1">
+        <caption>
+            Danh sách nhân viên Blissful
+        </caption>
+        <tr>
+            <th>STT</th>
+            <th>Fisrt_name</th>
+            <th>Last_name</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Date_of_birth</th>
+            <th>Chuc Vu</th>
+
+
+        </tr>
+        {% for nhanvien in dsnv %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ nhanvien.First_name }}</td>
+            <th>{{ nhanvien.Last_name}}</th>
+            <th>{{ nhanvien.Phone}}</th>
+            <th>{{nhanvien.Address}}</th>
+            <th>{{nhanvien.Date_of_birth}}</th>
+            <th>{{nhanvien.chuc_vu.Name}}</th>
+            <th><a href="{% url 'delete' nhanvien.id %}">Xoa</a></th>
+            <th><a href="{% url 'detailuser_id' nhanvien.id %}">Update</a></th>
+        </tr>
+        {% endfor %}
+
+    </table>
+    <a href="{% url 'add_nv'%}">Thêm Nhân Viên</a>
+</body>
+
+</html>

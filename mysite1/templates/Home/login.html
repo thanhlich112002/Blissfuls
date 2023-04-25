@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" href="{% static 'img/logo_blackwhite.png'%}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="modal js-modal">
+        <div class="modal-container js-modal-container">
+            <div class="modal-close js-modal-close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+
+            <header class="modal-header">
+                <img src="./img/logo.png" alt="logo">
+                <p>Blissful xin chào!</p>
+            </header>
+
+            <form action="CheckLoginServlet" method="post">
+                <div class="modal-body">
+                    <input name="modal-quatity" id="modal-quatity" type="text" class="modal-input"
+                        placeholder="Tài khoản">
+                    <input name="modal-email" id="modal-email" type="password" class="modal-input"
+                        placeholder="Mật khẩu">
+                    <div class="modal-forget">
+                        <a href="">Quên mật khẩu?</a>
+                    </div>
+                    <button type="submit" class="modal-pay-btn">
+                        Đăng nhập
+                    </button>
+                </div>
+
+
+                <footer class="modal-footer">
+                    Bạn chưa có tài khoản? <a href="">Đăng ký</a>
+                </footer>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
